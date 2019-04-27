@@ -17,13 +17,13 @@ $("#addTrain").on("click", function (event) {
 
     var newTrip = {
         name: $("#trainName").val().trim(),
-        destination: $("#inputDestination").val().trim(),
+        destination: $("#destination").val().trim(),
         time: $("#firstTrainTime").val().trim(),
-        frequency: ("#trainFrequency").val().trim()
+        frequency: $("#trainFrequency").val().trim()
     }
 
     $("#trainName").val("");
-    $("#inputDestination").val("");
+    $("#destination").val("");
     $("#firstTrainTime").val("");
     $("#trainFrequency").val("");
 
