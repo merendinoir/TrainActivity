@@ -16,17 +16,38 @@ $("#addTrain").on("click", function (event) {
     event.preventDefault();
 
     var newTrip = {
-        name: $("#trainName").val().trim(),
+        departure: $("#dep").val().trim(),
         destination: $("#destination").val().trim(),
         time: $("#firstTrainTime").val().trim(),
         frequency: $("#trainFrequency").val().trim()
     }
 
-    $("#trainName").val("");
+    $("#dep").val("");
     $("#destination").val("");
     $("#firstTrainTime").val("");
     $("#trainFrequency").val("");
 
 // Code for the push
-    dataRef.ref().push({newTrip});
+    dataRef.ref().push(newTrip);
 });
+
+dataRef.ref().on("value", function(addTrip) {
+    console.log(addTrip.val());
+    // newTrip = addTrip.val().newTrip
+    console.log("Response key values: ", Object.keys(addTrip.val()));
+
+    var responseKeys = Object.keys(addTrip.val());
+
+    for (i = 0; i < responseKeys.length; i++) {
+        console.log(addTrip.val()[responseKeys[i]]);
+        console.log(addTrip.val()[responseKeys[i]].destination);
+        console.log(addTrip.val()[responseKeys[i]].frequency);
+        var dest = addTrip.val()[responseKeys[i]].destination;
+        var freq = addTrip.val()[responseKeys[i]].frequency;
+        var dept = addTrip.val()[responseKeys[i]].departure;
+        var time = addTrip.val()[responseKeys[i]].time;
+        $("#data").append('<tr><td>' + dept + '</td><td>' + dest +'</td></tr>' + '</td><td>' + time + '</td></tr>' + '</td><td>' + freq + '</td></tr>')
+    }
+    
+
+})
